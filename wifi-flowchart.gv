@@ -1,0 +1,42 @@
+digraph wifi_flow {
+    start [label="Authorising computers for Wifi"]
+    is_windows [shape=diamond, label="Operating system is Windows?"]
+    antivirus_installed [shape=diamond, label="Antivirus installed?"]
+    up_to_date [shape=diamond, label="Updated within 2 weeks?"]
+    owner_backups [shape=diamond, label="Does owner have backups?"]
+    owner_responsibility [shape=diamond, label="Does owner take responsibility?"]
+    has_antivirus [shape=diamond, label="Does the computer have an\nupdatable antivirus?"]
+    connect_to_virus [label="Connect to Virus network"]
+    all_viruses_removed [shape=diamond, label="All viruses (if any) removed?"]
+    install_mse [label="Install Microsoft Security Essentials"]
+    update_av [label="Update antivirus"]
+    scan_viruses [label="Scan for viruses"]
+    return_computer [label="Return computer to owner, do not authorise"]
+    authorise [label="Authorise for network"]
+
+    start -> is_windows
+
+    is_windows -> antivirus_installed [label="Yes"]
+    is_windows -> authorise [label="No"]
+
+    antivirus_installed -> up_to_date [label="Yes"]
+    up_to_date -> authorise [label="Yes"]
+
+    antivirus_installed -> owner_backups [label="No"]
+
+    up_to_date -> owner_backups [label="No"]
+
+    owner_backups -> return_computer [label="No"]
+    owner_backups -> owner_responsibility [label="Yes"]
+    owner_responsibility -> return_computer [label="No"]
+    owner_responsibility -> connect_to_virus [label="Yes"]
+    connect_to_virus -> has_antivirus
+    has_antivirus -> install_mse [label="No"]
+    install_mse -> update_av
+    has_antivirus -> update_av [label="Yes"]
+    update_av -> scan_viruses
+    scan_viruses -> all_viruses_removed
+    all_viruses_removed -> return_computer [label="No"]
+    all_viruses_removed -> authorise [label="Yes"]
+
+}
