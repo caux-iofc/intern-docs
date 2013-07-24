@@ -4,4 +4,4 @@ This repository contains non-sensitive interns documentation for [Caux](http://c
 
 Flowcharts can be compiled using graphviz, for example:
 
-    dot -T pdf wifi-flowchart.gv > wifi-flowchart.pdf
+    dot -T pdf wifi-flowchart.gv > compiled/wifi-flowchart.pdf
