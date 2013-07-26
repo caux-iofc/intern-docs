@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+
+\setlength{\parskip}{0.7em}
+
+\title{Getting MAC addresses}
+\author{}
+\date{Last updated: \today}
+
+\begin{document}
+\maketitle
+
+\subsection{Windows}
+
+On Windows, you need to open a command prompt by opening the \emph{Run} dialog
+and entering \texttt{cmd}. In the window that opens, type \texttt{ipconfig
+/all}. You will see a dump of information about the networks and network cards
+present on the computer. Sometimes this information may be too long to process
+(some computers contain a lot of virtual interfaces, for example). If this is
+the case, use \texttt{ipconfig /all | more} to use a pager.  Usually (but not
+always) the relevant network card will be near the top. Look for something with
+words like \emph{Wi-Fi}, \emph{Wireless}, or \emph{802.11} (if "Virtual" is in
+the name, it probably isn't it).  If you can't find the card, ask one of us for
+help.
+
+Once you have found the correct network interface, you need to get its MAC
+address. This can be acquired from the \emph{physical address} section of the
+output, below the name of the interface.
+
+\subsection{Mac OSX}
+
+On Macs this information can be attained in a few ways. The easiest way to
+explain is perhaps using the command line. Open a terminal and type
+\texttt{ifconfig}. This will display information about the network interfaces
+on that computer. There are a few possibilities about how this output will look
+-- usually you will have \texttt{en0} and \texttt{en1}, and \texttt{en1} is the
+one you want. If there is no \texttt{en1}, \texttt{en0} is probably the one you
+want.
+
+\subsection{Android}
+
+The MAC address is visible at \emph{Settings}, \emph{About phone}, \emph{Status}
+under the title \emph{Wi-Fi MAC Address}.
+
+\subsection{iPhone and iPad}
+
+The MAC address is visible at \emph{Settings}, \emph{General}, \emph{About}
+under the title \emph{Wi-Fi Address}.
+
+\subsection{Blackberry}
+
+The MAC address is visible at \emph{Options}, \emph{Status} under the title
+\emph{WLAN MAC address}.
+
+\subsection{Nokia phones}
+
+The MAC address is generally visible upon dialling the number
+\texttt{*\#62209526\#} (\texttt{*\#wlan0mac\#}).
+
+I have also encountered some Nokia phones (notably, the Nokia Asha) where you
+have to go into the wireless networks menu, highlight an access point, press
+the menu button, and select \emph{Details}, which reveals the MAC address.
+
+\end{document}
